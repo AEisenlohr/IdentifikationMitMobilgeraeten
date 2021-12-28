@@ -1,0 +1,8 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#start, #login, #username-text, #password-text #register {
+  font-size: 1.5em;
+}
