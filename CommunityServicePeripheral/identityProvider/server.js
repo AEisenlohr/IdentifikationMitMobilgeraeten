@@ -10,6 +10,9 @@ app.get('/users', (req, res) => {
     res.json(users)
 })
 
+/*
+ * Implements the registration of users
+ */
 app.post('/users', async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
@@ -21,6 +24,9 @@ app.post('/users', async (req, res) => {
     }
 })
 
+/*
+ * Implements the user login
+ */
 app.post('/users/login', async (req,res) => {
     const user = users.find(user => user.name === req.body.name)
     if (user == null) {

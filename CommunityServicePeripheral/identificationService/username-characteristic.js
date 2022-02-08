@@ -2,6 +2,9 @@ var util = require('util');
 var bleno = require('bleno');
 var identification = require('./identification');
 
+/*
+ * Implements a characteristic to recieve the username
+ */
 function UsernameCharacteristic(identification) {
     bleno.Characteristic.call(this, {
         uuid: '13333333333333333333333333330002',
@@ -19,6 +22,9 @@ function UsernameCharacteristic(identification) {
 
 util.inherits(UsernameCharacteristic, bleno.Characteristic);
 
+/*
+ * Writes the data on request to the identification object
+ */
 UsernameCharacteristic.prototype.onWriteRequest = function(data, offset, withoutResponse, callback) {
     if (offset) {
         callback(this.RESULT_ATTR_NOT_LONG);
