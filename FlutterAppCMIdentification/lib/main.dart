@@ -104,6 +104,8 @@ class _HomePageState extends State<HomePage> {
   final Uuid usernameUuid = Uuid.parse("13333333333333333333333333330002");
   final Uuid passwordUuid = Uuid.parse("13333333333333333333333333330003");
 
+  //scans for advertising peripheral with known uuid and name
+  //called on scan button pressed
   void _startScan() async {
     // Android needs special permission request to use this app
     bool permGranted = false;
@@ -117,6 +119,8 @@ class _HomePageState extends State<HomePage> {
 
     // Main scanning logic
     if (permGranted) {
+      //send credentials and request to peripheral
+      //called on button pressed    _scanStream = flutterReactiveBle
       _scanStream = flutterReactiveBle
           .scanForDevices(withServices: [serviceUuid]).listen((device) {
         if (device.name == 'CommunityMirror') {
@@ -128,6 +132,8 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  //connect to found peripheral and its services and characteristics
+  //called on connect button pressed
   void _connectToDevice() {
     _scanStream.cancel();
 
@@ -164,6 +170,8 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  //send credentials and request to peripheral
+  //called on login button pressed
   void _sendCredentials() {
     if (connected) {
       var username = binaryCodec.encode(usernameController.text);
